@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Tag;
+use App\Models\Artist;
 
 class Post extends Model
 {
@@ -32,5 +33,10 @@ class Post extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function imageArtist()
+    {
+        return $this->hasOneThrough(Artist::class, Image::class);
     }
 }

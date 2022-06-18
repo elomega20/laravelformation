@@ -56,10 +56,16 @@ class postController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request->avatar->store('avatars'));
         /*$post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
         $post->save();*/
+
+        $request->validate([
+            'title' => 'required|min:5|max:255|unique:posts',
+            'content' => 'required'
+        ]);
 
         //une autre facon de faire(plus pro)
         Post::create([
